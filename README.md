@@ -10,7 +10,7 @@ En el programa  va ser programat amb moltes coses com es coneix en el món de la
 
 ## Exemple de us
 ### Setup previ
-Al ecosistema de google scripts cal crear un nou projecte. Accedint a la configuració del projecte activarem la opció *Mostrar el archivo de manifiesto "appsscript.json" en el editor*  dins de aquest configurarem la nostra zona horaria, que serà necessari per evitar confusions al llarg del codi, per defecte ve configurat a nova york [llista codis zones horaries](http://joda-time.sourceforge.net/timezones.html). Quan haguem fet aquest tramit ja podem tornar a deshabilitar la opció. Aquí el meu cas [`codi`]
+Al ecosistema de google scripts cal crear un nou projecte. Accedint a la configuració del projecte activarem la opció *Mostrar el archivo de manifiesto "appsscript.json" en el editor*  dins de aquest configurarem la nostra zona horaria, que serà necessari per evitar confusions al llarg del codi, per defecte ve configurat a nova york, [llista codis zones horaries](http://joda-time.sourceforge.net/timezones.html). Quan haguem fet aquest tramit ja podem tornar a deshabilitar la opció. Aquí el meu cas `appsscript.json`
 ```
 {
   "timeZone": "Europe/Madrid",
@@ -24,7 +24,7 @@ Al ecosistema de google scripts cal crear un nou projecte. Accedint a la configu
 }
 ```
 
-Al executar per primer cop et demanarà que auoritzis l'acces tant al correu com al calendar, cosa que es logica. 
+Al executar per primer cop `Código.gs` et demanarà que auoritzis l'acces tant al correu com al calendar, cosa que es logica. 
 En principi el programa ja hauria de funcionar, pero encara cal configurar el gmail, ho detallo a la secció seguent. La primera execuxió, tot i donar error hauria de crear les etiquetes corresponents
 * Event registrat
 * ERRORS
@@ -35,7 +35,34 @@ Un cop creades les etiquetes haurien de apareixer, un cop refrescada la pàgina,
 
 A continuació posaré com está configurat el meu cas, concretament el de que un event ha estat acceptat.
 *Coincideix: (from:(sict-ds.notificador@upc.edu) ("Sala Polivalent" OR "Sala d'Actes" PENDENT) -{ACCEPTAT OR eliminat})*
-Aquí el [link de la documantació](https://support.google.com/mail/answer/7190?hl=en). La gracia del filtre ha de estar en que s'eviti la *safata principal* i se li apliqui **només** la etiqueta que toca en cada cas.
+Aquí el [link de la documantació](https://support.google.com/mail/answer/7190?hl=en). La gracia del filtre ha de estar en que s'eviti la *safata principal* i se li apliqui **només** la etiqueta que toca en cada cas. Si hi ha alguna etiqueta extra donarà error.
 
+I ja estaria, ara només caldria entrar a `Código.gs` i modificar-lo de manera que:
+* creei i elimini els events del calendari desitgat modificant la variable. `var calendar_id = "serveistic.cdb@upc.edu";`
+* agafi la informació del event que volem o si ha canviat l'estil de correus de servei. Aquí alguns fragments que s'hauran de modificar segurament.
+``` 
+var Keyword1 = "Motiu de la reserva";//Part que buscarem per trobar la info que volem
+var Keyword2 = "<br />";//Part que buscarem per trobar la info que volem
+```
 
-## Webrafia
+```
+var motiuReserva = currentmessage.substr(indexclau1, indexclau2-indexclau1);//Pillem la info que volem (inici, llargada)
+              //console.log("Brut:"+motiuReserva);
+              //Ara netejem el string que hem recuperat
+
+              var Inici=motiuReserva.indexOf("> ");
+              motiuReserva=motiuReserva.substr(Inici+2, motiuReserva.length);
+              console.log("Net:"+ motiuReserva);
+
+              //str.substr
+```
+### Esquema del funcionament
+La estructura general del programma consta de la seguents parts, esquematitzades així
+* Declaració de variables
+* S'agafen tots els fls de totes les etiquetes i es posen en un array
+* Es mira el primer fil
+  * Es mira el primer misstge del fil
+  * Es porocessa el missatge creant o eliminant segons toqui
+* Es caniva la etiqueta de tot el fil
+
+## Webgrafia
