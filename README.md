@@ -10,6 +10,32 @@ En el programa  va ser programat amb moltes coses com es coneix en el món de la
 
 ## Exemple de us
 ### Setup previ
-Al ecosistema de google scripts cal crear un nou projecte. Accedint a la configuració del projecte activarem la opció *Mostrar el archivo de manifiesto "appsscript.json" en el editor*  dins de aquest configurarem la nostra zona horaria, que serà necessari per evitar confusions al llarg del codi, per defecte ve configurat a nova york [Llista codis zones horaries](https://gist.github.com/mhawksey/8673e904a03a91750c26c2754fe0977a).
+Al ecosistema de google scripts cal crear un nou projecte. Accedint a la configuració del projecte activarem la opció *Mostrar el archivo de manifiesto "appsscript.json" en el editor*  dins de aquest configurarem la nostra zona horaria, que serà necessari per evitar confusions al llarg del codi, per defecte ve configurat a nova york [llista codis zones horaries](http://joda-time.sourceforge.net/timezones.html). Quan haguem fet aquest tramit ja podem tornar a deshabilitar la opció. Aquí el meu cas [`codi`]
+```
+{
+  "timeZone": "Europe/Madrid",
+  "dependencies": {},
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "webapp": {
+    "executeAs": "USER_ACCESSING",
+    "access": "MYSELF"
+  }
+}
+```
+
+Al executar per primer cop et demanarà que auoritzis l'acces tant al correu com al calendar, cosa que es logica. 
+En principi el programa ja hauria de funcionar, pero encara cal configurar el gmail, ho detallo a la secció seguent. La primera execuxió, tot i donar error hauria de crear les etiquetes corresponents
+* Event registrat
+* ERRORS
+* Reserva acceptada
+* Reserva eliminada
+
+Un cop creades les etiquetes haurien de apareixer, un cop refrescada la pàgina, a la part esquerra, com qualsevol altre etiqueta. Comprvat ja que ha creat les etiquetes toca fer que els correus que arribin es classifiquin a la que toca sense apareixe a la nosra safata de entrada, així deixaran de molestar, que es l'objectiu principal. Per a conseguir aixó farem servir els filtres que venen integrats. 
+
+A continuació posaré com está configurat el meu cas, concretament el de que un event ha estat acceptat.
+*Coincideix: (from:(sict-ds.notificador@upc.edu) ("Sala Polivalent" OR "Sala d'Actes" PENDENT) -{ACCEPTAT OR eliminat})*
+Aquí el [link de la documantació](https://support.google.com/mail/answer/7190?hl=en). La gracia del filtre ha de estar en que s'eviti la *safata principal* i se li apliqui **només** la etiqueta que toca en cada cas.
+
 
 ## Webrafia
