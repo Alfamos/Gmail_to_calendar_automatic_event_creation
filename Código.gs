@@ -1,4 +1,4 @@
-var calendar_id = "c_18m1m2am038fv12htpaultsrv0@group.calendar.google.com";
+var calendar_id = "serveistic.cdb@upc.edu";
 let month_short= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 let month_long = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 var All_OK = true;
@@ -11,14 +11,10 @@ var alphabet = "&quot;&amp;&sol;&lt;&gt;&sbquo;&bdquo;&dagger;&Dagger;&permil;&l
 var encrypted = '";&;/;<;>;‚;„;†;‡;‰;‹;‘;’;“;”;™;›;;¡;¢;£;¤;¥;¦;§;¨;©;ª;«;¬;­;®;¯;°;±;²;³;´;µ;¶;·;¸;¹;º;»;¼;½;¾;¿;À;Á;Â;Ã;Ä;Å;Æ;Ç;È;É;Ê;Ë;Ì;Í;Î;Ï;Ð;Ñ;Ò;Ó;Ô;Õ;Ö;×;Ø;Ù;Ú;Û;Ü;Ý;Þ;ß;à;á;â;ã;ä;å;æ;ç;è;é;ê;ë;ì;í;î;ï;ð;ñ;ò;ó;ô;õ;ö;÷;ø;ù;ú;û;ü'.split(';'); //change this to your key
 
 var dict = {};
+
 for (var i=0;i< alphabet.length;i++){
-    dict[alphabet[i]]=encrypted[i];
-  }
-
-
-
-
-
+    dict[alphabet[i]+';']=encrypted[i];
+}
 
 function evants_al_calendari (){
   auto_register_ACCEPTAT();
@@ -143,7 +139,7 @@ function auto_register_ACCEPTAT (){
               //console.log("Brut:"+descripcio);
               //Ara netejem el string que hem recuperat
               descripcio = currentmessage.substr(indexclau1+6, indexclau2-indexclau1-6);//Pillem la info que volem (inici, llargada)
-              descripcio = netejarhtml(descripcio);
+              var descripcio = netejarhtml(descripcio);
               console.log("Net:"+ descripcio)
 
             }
@@ -311,7 +307,7 @@ function introduir_events(dia,mes,any,hora1,hora2,ubicacio,motiuReserva,descripc
     var event = CalendarApp.getCalendarById(calendar_id).createEvent(motiuReserva,
       date1,
       date2,
-      {location: ubicacio,timezone:CalendarApp.getTimeZone()}).removeAllReminders() ;
+      {description:descripcio,location: ubicacio,timezone:CalendarApp.getTimeZone()}).removeAllReminders() ;
     console.log('Event ID: ' + event.getId());
     console.log(CalendarApp.getTimeZone());
     
@@ -360,5 +356,5 @@ function netejarhtml(descripcio) {
   for(var key in dict) {
     descripcio = descripcio.replace(key,dict[key],"gi");
   }
-  console.log(descripcio)
+  return(descripcio);
 }
