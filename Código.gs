@@ -6,6 +6,20 @@ var creating = false;
 var eliminating =false;
 var modifying = false;
 
+
+var alphabet = "&quot;&amp;&sol;&lt;&gt;&sbquo;&bdquo;&dagger;&Dagger;&permil;&lsaquo;&lsquo;&rsquo;&ldquo;&rdquo;&trade;&rsaquo;&nbsp;&iexcl;&cent;&pound;&curren;&yen;&brvbar;&sect;&uml;&copy;&ordf;&laquo;&not;&shy;&reg;&macr;&deg;&plusmn;&sup2;&sup3;&acute;&micro;&para;&middot;&cedil;&sup1;&ordm;&raquo;&frac14;&frac12;&frac34;&iquest;&Agrave;&Aacute;&Acirc;&Atilde;&Auml;&Aring;&AElig;&Ccedil;&Egrave;&Eacute;&Ecirc;&Euml;&Igrave;&Iacute;&Icirc;&Iuml;&ETH;&Ntilde;&Ograve;&Oacute;&Ocirc;&Otilde;&Ouml;&times;&Oslash;&Ugrave;&Uacute;&Ucirc;&Uuml;&Yacute;&THORN;&szlig;&agrave;&aacute;&acirc;&atilde;&auml;&aring;&aelig;&ccedil;&egrave;&eacute;&ecirc;&euml;&igrave;&iacute;&icirc;&iuml;&eth;&ntilde;&ograve;&oacute;&ocirc;&otilde;&ouml;&divide;&oslash;&ugrave;&uacute;&ucirc;&uuml".split(';');
+var encrypted = '";&;/;<;>;‚;„;†;‡;‰;‹;‘;’;“;”;™;›;;¡;¢;£;¤;¥;¦;§;¨;©;ª;«;¬;­;®;¯;°;±;²;³;´;µ;¶;·;¸;¹;º;»;¼;½;¾;¿;À;Á;Â;Ã;Ä;Å;Æ;Ç;È;É;Ê;Ë;Ì;Í;Î;Ï;Ð;Ñ;Ò;Ó;Ô;Õ;Ö;×;Ø;Ù;Ú;Û;Ü;Ý;Þ;ß;à;á;â;ã;ä;å;æ;ç;è;é;ê;ë;ì;í;î;ï;ð;ñ;ò;ó;ô;õ;ö;÷;ø;ù;ú;û;ü'.split(';'); //change this to your key
+
+var dict = {};
+for (var i=0;i< alphabet.length;i++){
+    dict[alphabet[i]]=encrypted[i];
+  }
+
+
+
+
+
+
 function evants_al_calendari (){
   auto_register_ACCEPTAT();
 }
@@ -128,9 +142,9 @@ function auto_register_ACCEPTAT (){
               var descripcio = currentmessage.substr(indexclau1, indexclau2-indexclau1);//Pillem la info que volem (inici, llargada)
               //console.log("Brut:"+descripcio);
               //Ara netejem el string que hem recuperat
-var descripcio = currentmessage.substr(indexclau1+6, indexclau2-indexclau1-7);//Pillem la info que volem (inici, llargada)
-
-              console.log("Net:"+ descripcio);
+              descripcio = currentmessage.substr(indexclau1+6, indexclau2-indexclau1-6);//Pillem la info que volem (inici, llargada)
+              descripcio = netejarhtml(descripcio);
+              console.log("Net:"+ descripcio)
 
             }
 
@@ -167,7 +181,7 @@ var descripcio = currentmessage.substr(indexclau1+6, indexclau2-indexclau1-7);//
 
                 //Aquí crearé un if de manera que o els introduim o els eliminem
                 if (creating==true){
-                  introduir_events(dia,mes,any,hora1,hora2,ubicacio,motiuReserva);
+                  introduir_events(dia,mes,any,hora1,hora2,ubicacio,motiuReserva,descripcio);
                 }
 
                 else if (eliminating==true){
@@ -242,7 +256,7 @@ var descripcio = currentmessage.substr(indexclau1+6, indexclau2-indexclau1-7);//
 }
 
 
-function introduir_events(dia,mes,any,hora1,hora2,ubicacio,motiuReserva) {
+function introduir_events(dia,mes,any,hora1,hora2,ubicacio,motiuReserva,descripcio) {
     // Creates an event for the moon landing and logs the ID.
   //[dia, mes, any,hora1,hora2] =["01","Sep","2021","13:00","14:30"];
   //var motiuReserva = "Energy days Conference"
@@ -279,7 +293,7 @@ function introduir_events(dia,mes,any,hora1,hora2,ubicacio,motiuReserva) {
     var event = CalendarApp.getCalendarById(calendar_id).createEvent(motiuReserva,
       date1,
       date2,
-      {location: ubicacio,timezone:CalendarApp.getTimeZone()}).removeAllReminders() ;
+      {description:descripcio,location: ubicacio,timezone:CalendarApp.getTimeZone()}).removeAllReminders() ;
     console.log('Event ID: ' + event.getId());
     console.log(CalendarApp.getTimeZone());
     
@@ -339,4 +353,12 @@ function eliminar_events (dia,mes,any,hora1,hora2,ubicacio,motiuReserva){
     
   }
 }
-  
+
+//Aquí una funció que fa que per exemple &agrave; sigui à
+function netejarhtml(descripcio) {
+
+  for(var key in dict) {
+    descripcio = descripcio.replace(key,dict[key],"gi");
+  }
+  console.log(descripcio)
+}
