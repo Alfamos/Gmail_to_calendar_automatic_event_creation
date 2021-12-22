@@ -1,4 +1,4 @@
-var calendar_id = "serveistic.cdb@upc.edu";
+var calendar_id = "c_18m1m2am038fv12htpaultsrv0@group.calendar.google.com";
 let month_short= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 let month_long = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 var All_OK = true;
@@ -15,6 +15,8 @@ function auto_register_ACCEPTAT (){
 
   var Keyword1 = "Motiu de la reserva";//Part que buscarem per trobar la info que volem
   var Keyword2 = "<br />";//Part que buscarem per trobar la info que volem
+  var Keyword3 = "Descripci";//Key word per trobar el nom de contacte
+  var Keyword4 = "</p>";//Key word per trobar el nom de contacte
   var label_creating = GmailApp.getUserLabelByName("Reserva acceptada"); // A label_creating that signifies emails marked for deletion 
   var label_processing = GmailApp.getUserLabelByName("Event registrat");
   var label_error = GmailApp.getUserLabelByName("ERRORS");
@@ -111,8 +113,32 @@ function auto_register_ACCEPTAT (){
               console.log("Keyword1 not found");
               All_OK = false;
             }
-            //extraiem location evento.
+            
+            //Extraiem la descripció per posarla coma nota/detalls en el evento
+            if (currentmessage.search(Keyword3) != -1){
+              var indexclau1 = currentmessage.indexOf(Keyword3);
 
+              //console.log(indexclau1);//Busquem l'index de la keyword
+              //Busquem la keyword del principi correcte de la part que interesa
+              var indexclau1 = currentmessage.indexOf(Keyword2, indexclau1);// busquem l'string a partir del final del altre
+              //console.log(indexclau2);
+              var indexclau2 = currentmessage.indexOf(Keyword4, indexclau1);// busquem l'string a partir del final del altre
+              //console.log(indexclau2);
+
+              var descripcio = currentmessage.substr(indexclau1, indexclau2-indexclau1);//Pillem la info que volem (inici, llargada)
+              //console.log("Brut:"+descripcio);
+              //Ara netejem el string que hem recuperat
+var descripcio = currentmessage.substr(indexclau1+6, indexclau2-indexclau1-7);//Pillem la info que volem (inici, llargada)
+
+              console.log("Net:"+ descripcio);
+
+            }
+
+            else {
+              console.log("Keyword3 not found");
+              All_OK = false;
+            }
+              //extraiem location evento.
             if(currentsubject.search("reserva del recurs") != -1){
               var indexclau1 = currentsubject.indexOf("reserva del recurs");
               var indexclau2 = currentsubject.indexOf(" s");// busquem l'string a partir del final del altre
