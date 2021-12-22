@@ -1,4 +1,5 @@
 # My-first-google-script
+# WORK IN PROGRESS
 En aquest repositori trobarem els meus primers programes de google scripts
 Seria interessant que el lector entengués que aquest programa és el meu primer programa amb JavaScript, i el primer que interactua amb altres programes. 
 ## Que cal saber abans de començar
