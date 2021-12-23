@@ -63,12 +63,16 @@ L'estructura general del programa consta de les següents parts, esquematitzades
 * Declaració de variables
 * S'agafen tots els fils de totes les etiquetes i es posen en un array
 * Es mira el primer fil
-** Es mira el primer missatge del fil
-** Es processa el missatge creant o eliminant segons toqui
-* Es canvia l'etiqueta de tot el fil
+  * Es mira el primer missatge del fil
+  * Es processa el missatge creant o eliminant segons toqui
+  * Es canvia l'etiqueta de tot el fil
 * Es passa al següent fil
 ### Altres consideracions
 Si ja ha fet servir mai Google scripts hauria de saber aquests petits detalls però no està de més fer-ne cinc cèntims.
 * Per activar l'script s'ha d'anar dins el projecte, un cop estem veient el codi per editar, al desplegable de l'esquerra, i clicar sobre la icona del rellotge/apartat que posa activadors, allà es pot configurar un activador segons les nostres preferències, en el cas del meu projecte cada 15 min s'activa una funció que conté la funció principal, d'aquesta manera si en el futur em cal posar més funcions no haver de reconfigurar l'activador.
 * Es poden veure els activadors actius al [apartat activadors de la pàgina principal](https://script.google.com/home/triggers).
 ## Webgrafia
+* [Documentació completa funcionament i funcions separat per productes, gmail,drive... de appScripts](https://developers.google.com/apps-script/reference)
+* [Tutorials per començar a fer servir appscripts](https://developers.google.com/apps-script/quickstart/custom-functions)
+* [The page where I got the idea of doing this script, shutout to them!](https://nethunt.com/blog/how-to-automate-your-email-routine-in-gmail/)
+* [Com funcionen els fils de Gmail, mes o menys, serveix per donar-te conta que el sistema funciona regular](https://webapps.stackexchange.com/questions/965/how-does-gmail-decide-to-thread-email-messages)
