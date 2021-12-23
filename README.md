@@ -65,5 +65,9 @@ La estructura general del programma consta de la seguents parts, esquematitzades
   * Es mira el primer misstge del fil
   * Es porocessa el missatge creant o eliminant segons toqui
 * Es caniva la etiqueta de tot el fil
-
+* Es pasa al seguent fil
+### Altres consideracions
+Si ja ha fet servir mai google scripts hauria de saber aquets petits detalls pero no està de més fer-ne cinc centims.
+* Per activar l'escrip s'ha de anar dins el projecte, un cop estem veient el codi per editar, al deplegable de la esquerra, i clickar sobre l'icone del rellotge/apartat que posa activadorsa, allà es pot configurar un activador segons les nostres preferencies, en el cas del meu projecte cada 15 min s'activa una funció que conté la funció principal, d'aquesta manera si en el futur em cal posar mes funcions no baure de reconfigurar l'activador. 
+* Es poden veure els activadors actius al [apartat activadores de la pagina principal](https://script.google.com/home/triggerst).
 ## Webgrafia
