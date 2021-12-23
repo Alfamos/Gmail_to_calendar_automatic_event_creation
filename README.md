@@ -70,5 +70,5 @@ L'estructura general del programa consta de les següents parts, esquematitzades
 ### Altres consideracions
 Si ja ha fet servir mai Google scripts hauria de saber aquests petits detalls però no està de més fer-ne cinc cèntims.
 * Per activar l'script s'ha d'anar dins el projecte, un cop estem veient el codi per editar, al desplegable de l'esquerra, i clicar sobre la icona del rellotge/apartat que posa activadors, allà es pot configurar un activador segons les nostres preferències, en el cas del meu projecte cada 15 min s'activa una funció que conté la funció principal, d'aquesta manera si en el futur em cal posar més funcions no haver de reconfigurar l'activador.
-* Es poden veure els activadors actius al [apartat activadors de la pàgina principal](https://script.google.com/home/triggerst).
+* Es poden veure els activadors actius al [apartat activadors de la pàgina principal](https://script.google.com/home/triggers).
 ## Webgrafia
