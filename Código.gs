@@ -27,12 +27,12 @@ function auto_register_ACCEPTAT (){
   var Keyword2 = "<br />";//Part que buscarem per trobar la info que volem
   var Keyword3 = "Descripci";//Key word per trobar el nom de contacte
   var Keyword4 = "</p>";//Key word per trobar el nom de contacte
-  var label_creating = GmailApp.getUserLabelByName("Reserva acceptada"); // A label_creating that signifies emails marked for deletion 
+  var label_creating = GmailApp.getUserLabelByName("Reserva acceptada"); //agafem la etiqueta de veritat, no val amb modificar etiquetes per nom si no que son una cosa espacial
   var label_processing = GmailApp.getUserLabelByName("Event registrat");
   var label_error = GmailApp.getUserLabelByName("ERRORS");
   var label_eliminating = GmailApp.getUserLabelByName("Reserva eliminada");
   
-  
+  //Su no existisin les etiquetes les creariem aquí
   if (label_processing==null){
      GmailApp.createLabel('Event registrat');
      console.log("label_processing Created");
@@ -53,7 +53,7 @@ function auto_register_ACCEPTAT (){
 
   
 
-
+  //Creem el xurro de fils
   var threads_creating = label_creating.getThreads();
   var threads_eliminating = label_eliminating.getThreads();
           //console.log("Threads:"+ threads);
