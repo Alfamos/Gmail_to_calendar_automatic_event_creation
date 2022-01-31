@@ -2,6 +2,8 @@
 # WORK IN PROGRESS
 En aquest repositori trobarem els meus primers programes de Google scripts
 Seria interessant que el lector entengués que aquest programa és el meu primer programa amb JavaScript, i el primer que interactua amb altres programes.
+# Ep!
+En els codis es fa servir la funció `substr()`, que sembla que aviat quedará relegada per altres funcions com `substring()`. Cal mirar com modificar el codi si fos el cas que no funcionés. [Link diferencia substr() vs substring()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring#the_difference_between_substring_and_substr)
 ## Que cal saber abans de començar
 Aquest programa va ser creat dins l'ecosistema de Google scripts, aquest repositori només és una forma de tindre una còpia de seguretat, no funcionarà si es fa anar fora de de l'ecosistema. Recomano saber un xic de googleappscrits abans de fer servir el codi que conté aquest repositori, ja que sincerament és un garbuix.
 
