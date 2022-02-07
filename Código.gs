@@ -270,7 +270,7 @@ function introduir_events(dia,mes,any,hora1,hora2,ubicacio,motiuReserva,descripc
   //Intentarem fer que miri si ja està creat avans de crear-lo, si es solapen tampoc el deixa crear cal solucionar del 
   
   var events = CalendarApp.getCalendarById(calendar_id).getEvents(date1, date2);
-  console.log(events[0]);
+  //console.log(events[0]);
   if (events[0] == undefined){
     //Aquí establirem el color de cada sala per a millorar la llegibilitat del calendari
     //documentació a https://developers.google.com/apps-script/reference/calendar/color
