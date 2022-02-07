@@ -294,28 +294,31 @@ function introduir_events(dia,mes,any,hora1,hora2,ubicacio,motiuReserva,descripc
     console.log(CalendarApp.getTimeZone());
     
   }
-
-  else if(events[0].getTitle()==motiuReserva){
-   console.log("Same event found");
-    All_OK=false;
-
-  }
-  else if (events[0].getTitle() != motiuReserva){
-    
-    
-    console.log("Space occupied with diferent event, introducing it anyway");
-    var event = CalendarApp.getCalendarById(calendar_id).createEvent(motiuReserva,
-      date1,
-      date2,
-      {description:descripcio,location: ubicacio,timezone:CalendarApp.getTimeZone()}).removeAllReminders() ;
-    console.log('Event ID: ' + event.getId());
-    console.log(CalendarApp.getTimeZone());
-    
-  }
   else{
-    console.log("Smoething strange has happend");
-    All_OK=false;
+    for (var i = 0; i < events.length; i++) {
+      if(events[i].getTitle()==motiuReserva){
+      console.log("Same event found");
+        All_OK=false;
+        break;
+
+      }
+      else if (i==events.lengt-1){
+        
+        
+        console.log("Space occupied with diferent event, introducing it anyway. The event may be a all day event");
+        var event = CalendarApp.getCalendarById(calendar_id).createEvent(motiuReserva,
+          date1,
+          date2,
+          {description:descripcio,location: ubicacio,timezone:CalendarApp.getTimeZone()}).removeAllReminders() ;
+        console.log('Event ID: ' + event.getId());
+        console.log(CalendarApp.getTimeZone());
+        
+      }
+
+
+    }
   }
+
 
 }
 
@@ -331,8 +334,8 @@ function eliminar_events (dia,mes,any,hora1,hora2,ubicacio,motiuReserva){
 
   var events = CalendarApp.getCalendarById(calendar_id).getEvents(date1, date2);
   //variable de control per asegurar-nos que està llegint tot bé
-  var prova = events[0].getTitle();
-  var prova2 = events.length;
+  //var prova = events[0].getTitle();
+  //var prova2 = events.length;
   //Eliminem l'evento asegurant-nos que no hi ha errors
   
   if(events[0] == undefined){
@@ -340,17 +343,20 @@ function eliminar_events (dia,mes,any,hora1,hora2,ubicacio,motiuReserva){
     console.log("The event that we want to elininate does not have title os does not exist")
 
   }
-  for (var i = 0; i < events.length; i++) {
-     if (events[i].getTitle()==motiuReserva){
-    events[i].deleteEvent();
-    console.log("Eliminanted")
-    }
-    else if(i==events.lengt-1){
-    All_OK= false;
-    console.log("Not the event that we are looking for")
-    
-    }
-}
+  else{
+      for (var i = 0; i < events.length; i++) {
+        if (events[i].getTitle()==motiuReserva){
+        events[i].deleteEvent();
+        console.log("Eliminanted")
+        }
+        else if(i==events.lengt-1){
+        All_OK= false;
+        console.log("Not the event that we are looking for")
+        
+        }
+      }
+
+  }
 
 }
 
