@@ -340,12 +340,12 @@ function eliminar_events (dia,mes,any,hora1,hora2,ubicacio,motiuReserva){
     console.log("The event that we want to elininate does not have title os does not exist")
 
   }
-  for (var i = 0; i <= events.length; i++) {
+  for (var i = 0; i < events.length; i++) {
      if (events[i].getTitle()==motiuReserva){
     events[i].deleteEvent();
     console.log("Eliminanted")
     }
-    else if(i==events.lengt){
+    else if(i==events.lengt-1){
     All_OK= false;
     console.log("Not the event that we are looking for")
     
