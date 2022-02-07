@@ -302,7 +302,7 @@ function introduir_events(dia,mes,any,hora1,hora2,ubicacio,motiuReserva,descripc
         break;
 
       }
-      else if (i==events.lengt-1){
+      else if (i==events.length-1){
         
         
         console.log("Space occupied with diferent event, introducing it anyway. The event may be a all day event");
