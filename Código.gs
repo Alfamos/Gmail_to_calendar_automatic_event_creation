@@ -331,7 +331,8 @@ function eliminar_events (dia,mes,any,hora1,hora2,ubicacio,motiuReserva){
 
   var events = CalendarApp.getCalendarById(calendar_id).getEvents(date1, date2);
   //variable de control per asegurar-nos que està llegint tot bé
-  //var prova = events[0].getTitle();
+  var prova = events[0].getTitle();
+  var prova2 = events.length;
   //Eliminem l'evento asegurant-nos que no hi ha errors
   
   if(events[0] == undefined){
@@ -339,15 +340,18 @@ function eliminar_events (dia,mes,any,hora1,hora2,ubicacio,motiuReserva){
     console.log("The event that we want to elininate does not have title os does not exist")
 
   }
-  else if (events[0].getTitle()==motiuReserva){
-    events[0].deleteEvent();
+  for (var i = 0; i <= events.length; i++) {
+     if (events[i].getTitle()==motiuReserva){
+    events[i].deleteEvent();
     console.log("Eliminanted")
-  }
-  else{
+    }
+    else if(i==events.lengt){
     All_OK= false;
     console.log("Not the event that we are looking for")
     
-  }
+    }
+}
+
 }
 
 //Aquí una funció que fa que per exemple &agrave; sigui à
