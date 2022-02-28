@@ -351,7 +351,7 @@ function eliminar_events (dia,mes,any,hora1,hora2,ubicacio,motiuReserva){
         events[i].deleteEvent();
         console.log("Eliminanted")
         }
-        else if(i==events.lengt-1){
+        else if(i==events.length-1){
         All_OK= false;
         console.log("Not the event that we are looking for")
         
