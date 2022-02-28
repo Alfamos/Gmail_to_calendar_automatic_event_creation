@@ -342,7 +342,7 @@ function eliminar_events (dia,mes,any,hora1,hora2,ubicacio,motiuReserva){
   
   if(events[0] == undefined){
     All_OK= false;
-    console.log("The event that we want to elininate does not have title os does not exist")
+    console.log("The event that we want to eliminate does not have title os does not exist")
 
   }
   else{
